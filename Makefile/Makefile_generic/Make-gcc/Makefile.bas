@@ -15,6 +15,15 @@ ifeq (1, $(SUBMODULES))
 	
 	PRJ_DEP_C	+= $(PRJ_LOCAL_DEP_C)
 	PRJ_DEP_C	:= $(sort $(PRJ_DEP_C))
+
+	PRJ_SRC_CPP	+= $(PRJ_LOCAL_SRC_CPP)
+	PRJ_SRC_CPP	:= $(sort $(PRJ_SRC_CPP))
+	
+	PRJ_OBJ_CPP	+= $(PRJ_LOCAL_OBJ_CPP)
+	PRJ_OBJ_CPP	:= $(sort $(PRJ_OBJ_CPP))
+	
+	PRJ_DEP_CPP	+= $(PRJ_LOCAL_DEP_CPP)
+	PRJ_DEP_CPP	:= $(sort $(PRJ_DEP_CPP))
 	
 	PRJ_OBJ_C_CXX	+= $(PRJ_LOCAL_OBJ_C_CXX)
 	PRJ_OBJ_C_CXX	:= $(sort $(PRJ_OBJ_C_CXX))

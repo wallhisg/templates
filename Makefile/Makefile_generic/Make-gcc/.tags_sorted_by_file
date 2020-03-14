@@ -1,0 +1,67 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+BUILD	Makefile	/^BUILD 		= build$/;"	m
+BUILD_BASE	Makefile	/^BUILD_BASE	= $(PRJ_BASE)\/$(BUILD)$/;"	m
+BUILD_DIR	Makefile	/^BUILD_DIR	= $(subst $(PRJ_PATH),$(BUILD_PATH), $(MDL_PATH))$/;"	m
+BUILD_PATH	Makefile	/^BUILD_PATH	= $(PRJ_BASE)\/$(BUILD)\/$/;"	m
+MDL_INC	Makefile	/^MDL_INC		:=$/;"	m
+MDL_PATH	Makefile	/^MDL_PATH	:=$/;"	m
+PRJ_BASE	Makefile	/^PRJ_BASE    ?= $(abspath $(dir $$PWD))$/;"	m
+PRJ_DEP_C	Makefile	/^PRJ_DEP_C	:=$/;"	m
+PRJ_LIBS	Makefile	/^PRJ_LIBS	:=$/;"	m
+PRJ_OBJ_C	Makefile	/^PRJ_OBJ_C	:=$/;"	m
+PRJ_PATH	Makefile	/^PRJ_PATH	?= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))$/;"	m
+PRJ_SRC_C	Makefile	/^PRJ_SRC_C	:=$/;"	m
+PRJ_TMPS	Makefile	/^PRJ_TMPS	:=$/;"	m
+PROGRAMS	Makefile	/^PROGRAMS	:=$/;"	m
+ROOT_BASE	Makefile	/^ROOT_BASE	?= $(abspath $(dir $(abspath $(dir $$PWD))))$/;"	m
+MAKEFILE	Makefile.bas	/^	SUBMAKEFILE	= $(foreach sdir, $(LOCAL_MAKEFILE), $(addprefix $(sdir), Makefile)) $/;"	f
+LOCAL_MAKEFILE	core/Makefile	/^LOCAL_MAKEFILE	:= $(filter-out $(PRJ_LOCAL_BASE), $(PRJ_LOCAL_MDL))$/;"	m
+PRJ_LOCAL_BASE	core/Makefile	/^PRJ_LOCAL_BASE	:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$/;"	m
+PRJ_LOCAL_DEP_C	core/Makefile	/^PRJ_LOCAL_DEP_C	:= $(patsubst %.c, %.deps, $(PRJ_LOCAL_SRC_C))	$/;"	m
+PRJ_LOCAL_DEP_C	core/Makefile	/^PRJ_LOCAL_DEP_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_C))$/;"	m
+PRJ_LOCAL_DEP_CPP	core/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(patsubst %.cpp, %.deps, $(PRJ_LOCAL_SRC_CPP))	$/;"	m
+PRJ_LOCAL_DEP_CPP	core/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_CPP))$/;"	m
+PRJ_LOCAL_INC	core/Makefile	/^PRJ_LOCAL_INC	:= $(wildcard $(PRJ_LOCAL_BASE)*.h)$/;"	m
+PRJ_LOCAL_MDL	core/Makefile	/^PRJ_LOCAL_MDL	:= $(sort $(dir $(wildcard $(PRJ_LOCAL_BASE)*\/)))$/;"	m
+PRJ_LOCAL_OBJ_C	core/Makefile	/^PRJ_LOCAL_OBJ_C	:= $(patsubst %.c, %.o, $(PRJ_LOCAL_SRC_C))$/;"	m
+PRJ_LOCAL_OBJ_C	core/Makefile	/^PRJ_LOCAL_OBJ_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_C))$/;"	m
+PRJ_LOCAL_OBJ_CPP	core/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(patsubst %.cpp, %.o, $(PRJ_LOCAL_SRC_CPP))$/;"	m
+PRJ_LOCAL_OBJ_CPP	core/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_CPP))$/;"	m
+PRJ_LOCAL_SRC_C	core/Makefile	/^PRJ_LOCAL_SRC_C	:= $(wildcard $(PRJ_LOCAL_BASE)*.c)$/;"	m
+PRJ_LOCAL_SRC_CPP	core/Makefile	/^PRJ_LOCAL_SRC_CPP	:= $(wildcard $(PRJ_LOCAL_BASE)*.cpp)$/;"	m
+SUBMODULES	core/Makefile	/^SUBMODULES 	= 1$/;"	m
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+LOCAL_MAKEFILE	include/Makefile	/^LOCAL_MAKEFILE		:= $(filter-out $(PRJ_LOCAL_BASE), $(PRJ_LOCAL_MDL))$/;"	m
+PRJ_LOCAL_BASE	include/Makefile	/^PRJ_LOCAL_BASE		:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$/;"	m
+PRJ_LOCAL_DEP_C	include/Makefile	/^PRJ_LOCAL_DEP_C		:= $(patsubst %.c, %.deps, $(PRJ_LOCAL_SRC_C))	$/;"	m
+PRJ_LOCAL_DEP_C	include/Makefile	/^PRJ_LOCAL_DEP_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_C))$/;"	m
+PRJ_LOCAL_DEP_CPP	include/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(patsubst %.cpp, %.deps, $(PRJ_LOCAL_SRC_CPP))	$/;"	m
+PRJ_LOCAL_DEP_CPP	include/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_CPP))$/;"	m
+PRJ_LOCAL_INC	include/Makefile	/^PRJ_LOCAL_INC	:= $(wildcard $(PRJ_LOCAL_BASE)*.h)$/;"	m
+PRJ_LOCAL_MDL	include/Makefile	/^PRJ_LOCAL_MDL		:= $(sort $(dir $(wildcard $(PRJ_LOCAL_BASE)*\/)))$/;"	m
+PRJ_LOCAL_OBJ_C	include/Makefile	/^PRJ_LOCAL_OBJ_C		:= $(patsubst %.c, %.o, $(PRJ_LOCAL_SRC_C))$/;"	m
+PRJ_LOCAL_OBJ_C	include/Makefile	/^PRJ_LOCAL_OBJ_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_C))$/;"	m
+PRJ_LOCAL_OBJ_CPP	include/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(patsubst %.cpp, %.o, $(PRJ_LOCAL_SRC_CPP))$/;"	m
+PRJ_LOCAL_OBJ_CPP	include/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_CPP))$/;"	m
+PRJ_LOCAL_SRC_C	include/Makefile	/^PRJ_LOCAL_SRC_C		:= $(wildcard $(PRJ_LOCAL_BASE)*.c)$/;"	m
+PRJ_LOCAL_SRC_CPP	include/Makefile	/^PRJ_LOCAL_SRC_CPP	:= $(wildcard $(PRJ_LOCAL_BASE)*.cpp)$/;"	m
+SUBMODULES	include/Makefile	/^SUBMODULES 	= 1$/;"	m
+LOCAL_MAKEFILE	include/dev/Makefile	/^LOCAL_MAKEFILE	:= $(filter-out $(PRJ_LOCAL_BASE), $(PRJ_LOCAL_MDL))$/;"	m
+PRJ_LOCAL_BASE	include/dev/Makefile	/^PRJ_LOCAL_BASE	:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))$/;"	m
+PRJ_LOCAL_DEP_C	include/dev/Makefile	/^PRJ_LOCAL_DEP_C	:= $(patsubst %.c, %.deps, $(PRJ_LOCAL_SRC_C))	$/;"	m
+PRJ_LOCAL_DEP_C	include/dev/Makefile	/^PRJ_LOCAL_DEP_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_C))$/;"	m
+PRJ_LOCAL_DEP_CPP	include/dev/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(patsubst %.cpp, %.deps, $(PRJ_LOCAL_SRC_CPP))	$/;"	m
+PRJ_LOCAL_DEP_CPP	include/dev/Makefile	/^PRJ_LOCAL_DEP_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_CPP))$/;"	m
+PRJ_LOCAL_INC	include/dev/Makefile	/^PRJ_LOCAL_INC	:= $(wildcard $(PRJ_LOCAL_BASE)*.h)$/;"	m
+PRJ_LOCAL_MDL	include/dev/Makefile	/^PRJ_LOCAL_MDL	:= $(sort $(dir $(wildcard $(PRJ_LOCAL_BASE)*\/)))$/;"	m
+PRJ_LOCAL_OBJ_C	include/dev/Makefile	/^PRJ_LOCAL_OBJ_C	:= $(patsubst %.c, %.o, $(PRJ_LOCAL_SRC_C))$/;"	m
+PRJ_LOCAL_OBJ_C	include/dev/Makefile	/^PRJ_LOCAL_OBJ_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_C))$/;"	m
+PRJ_LOCAL_OBJ_CPP	include/dev/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(patsubst %.cpp, %.o, $(PRJ_LOCAL_SRC_CPP))$/;"	m
+PRJ_LOCAL_OBJ_CPP	include/dev/Makefile	/^PRJ_LOCAL_OBJ_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_CPP))$/;"	m
+PRJ_LOCAL_SRC_C	include/dev/Makefile	/^PRJ_LOCAL_SRC_C	:= $(wildcard $(PRJ_LOCAL_BASE)*.c)$/;"	m
+PRJ_LOCAL_SRC_CPP	include/dev/Makefile	/^PRJ_LOCAL_SRC_CPP	:= $(wildcard $(PRJ_LOCAL_BASE)*.cpp)$/;"	m
+SUBMODULES	include/dev/Makefile	/^SUBMODULES 	= 1$/;"	m

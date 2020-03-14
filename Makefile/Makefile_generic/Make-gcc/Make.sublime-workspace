@@ -1,0 +1,361 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"stdi",
+				"stdio.h\tstandard header (deprecated)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 989,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/type.h",
+			"settings":
+			{
+				"buffer_size": 90,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "4# enable submodules\nSUBMODULES \t= 1\nifeq (1, $(SUBMODULES))\n\n#----------------------------------------------------------------------------------\nPRJ_LOCAL_BASE\t\t:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))\nPRJ_LOCAL_MDL\t\t:= $(sort $(dir $(wildcard $(PRJ_LOCAL_BASE)*/)))\nLOCAL_MAKEFILE\t\t:= $(filter-out $(PRJ_LOCAL_BASE), $(PRJ_LOCAL_MDL))\n#----------------------------------------------------------------------------------\n# c source\nPRJ_LOCAL_SRC_C\t\t:= $(wildcard $(PRJ_LOCAL_BASE)*.c)\n\nPRJ_LOCAL_OBJ_C\t\t:= $(patsubst %.c, %.o, $(PRJ_LOCAL_SRC_C))\nPRJ_LOCAL_OBJ_C\t\t:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_C))\n\nPRJ_LOCAL_DEP_C\t\t:= $(patsubst %.c, %.deps, $(PRJ_LOCAL_SRC_C))\t\nPRJ_LOCAL_DEP_C\t\t:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_C))\n#----------------------------------------------------------------------------------\n# cpp source\nPRJ_LOCAL_SRC_CPP\t:= $(wildcard $(PRJ_LOCAL_BASE)*.cpp)\n\nPRJ_LOCAL_OBJ_CPP\t:= $(patsubst %.cpp, %.o, $(PRJ_LOCAL_SRC_CPP))\nPRJ_LOCAL_OBJ_CPP\t:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_OBJ_CPP))\n\nPRJ_LOCAL_DEP_CPP\t:= $(patsubst %.cpp, %.deps, $(PRJ_LOCAL_SRC_CPP))\t\nPRJ_LOCAL_DEP_CPP\t:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_DEP_CPP))\n#----------------------------------------------------------------------------------\n# header\nPRJ_LOCAL_INC\t:= $(wildcard $(PRJ_LOCAL_BASE)*.h)\n#----------------------------------------------------------------------------------\n# dependencies\n$(PRJ_LOCAL_DEP_C): $(PRJ_LOCAL_SRC_C) $(PRJ_LOCAL_INC)\n\t@$(CC) -MM $< > $@\n\t@$(CC) $< -MM -MT $@ >> $@\n\t\n$(PRJ_LOCAL_OBJ_C): $(PRJ_LOCAL_SRC_C) $(PRJ_LOCAL_DEP_C)\n\n$(PRJ_LOCAL_DEP_CPP): $(PRJ_LOCAL_SRC_CPP) $(PRJ_LOCAL_INC)\n\t@$(CXX) -MM $< > $@\n\t@$(CXX) $< -MM -MT $@ >> $@\n\t\n$(PRJ_LOCAL_OBJ_CPP): $(PRJ_LOCAL_SRC_CPP) $(PRJ_LOCAL_DEP_CPP)\n#----------------------------------------------------------------------------------\ninclude $(PRJ_BASE)/Makefile.bas\n\nendif",
+			"file": "include/Makefile",
+			"file_size": 1928,
+			"file_write_time": 132286318464195566,
+			"settings":
+			{
+				"buffer_size": 1929,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/Makefile.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Makefile.sublime-build",
+					"All"
+				],
+				[
+					"Packages/User/Makefile.sublime-build",
+					"Build"
+				],
+				[
+					"Packages/User/Makefile.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/Makefile.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/Makefile.sublime-build",
+				"All"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Session",
+				"Session Manager: Save Session"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/core",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/include",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/include/dev",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/src"
+	],
+	"file_history":
+	[
+		"/home/wall/.cache/.fr-rlq9dT/syntax_test_accessor.c",
+		"/home/wall/.cache/.fr-e8WE1e/syntax_test_c.c",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/include/type.c",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/include/type.h",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/src/cdev.h",
+		"/home/wall/projects/templates/Makefile/Makefile_generic/Make-gcc/core/list.h",
+		"/home/wall/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/wall/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/wall/.config/sublime-text-3/Packages/Terminal/Default (Linux).sublime-keymap",
+		"/home/wall/.config/sublime-text-3/Packages/User/TerminalinPackages/Default.sublime-keymap",
+		"/home/wall/.config/sublime-text-3/Packages/User/Makefile.sublime-build"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 989,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								259,
+								259
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "include/type.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 90,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								90,
+								90
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "include/Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1929,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 218.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/Makefile.sublime-build",
+	"project": "Make.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 276.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
