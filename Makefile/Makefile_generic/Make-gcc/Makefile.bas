@@ -2,6 +2,7 @@
 ifeq (1, $(SUBMODULES))
 
 	MDL_PATH	+= $(PRJ_LOCAL_MDL)
+	MDL_PATH	+= $(PRJ_TEST_MDL)
 	MDL_PATH	:= $(sort $(MDL_PATH))
 
 	MLD_INC		+= $(addprefix -I,$(MDL_PATH))
