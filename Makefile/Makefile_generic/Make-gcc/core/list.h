@@ -1,1 +1,3 @@
-#include <type.h>
+#include <stdio.h>
+
+void list();

@@ -1,9 +1,16 @@
-
-ifeq (1, $(SUBMODULES))
+ifeq (1, $(MODULES))
+	MDL_PATH	+= $(PRJ_LOCAL_MDL)
+	MDL_PATH	:= $(sort $(MDL_PATH))
+	TEST_PATH	+= $(PRJ_TEST_MDL)
+	TEST_PATH	:= $(sort $(PRJ_TEST_MDL))
+	SUBMAKEFILE	= $(foreach sdir, $(LOCAL_MAKEFILE), $(addprefix $(sdir), Makefile)) 
+else ifeq (1, $(SUBMODULES))
 
 	MDL_PATH	+= $(PRJ_LOCAL_MDL)
-	MDL_PATH	+= $(PRJ_TEST_MDL)
 	MDL_PATH	:= $(sort $(MDL_PATH))
+
+	TEST_PATH	+= $(PRJ_TEST_MDL)
+	TEST_PATH	:= $(sort $(PRJ_TEST_MDL))
 
 	MLD_INC		+= $(addprefix -I,$(MDL_PATH))
 	MLD_INC		:= $(sort $(MLD_INC))
@@ -25,11 +32,9 @@ ifeq (1, $(SUBMODULES))
 	
 	PRJ_DEP_CPP	+= $(PRJ_LOCAL_DEP_CPP)
 	PRJ_DEP_CPP	:= $(sort $(PRJ_DEP_CPP))
-	
-	PRJ_OBJ_C_CXX	+= $(PRJ_LOCAL_OBJ_C_CXX)
-	PRJ_OBJ_C_CXX	:= $(sort $(PRJ_OBJ_C_CXX))
 
 	SUBMAKEFILE	= $(foreach sdir, $(LOCAL_MAKEFILE), $(addprefix $(sdir), Makefile)) 
+
 endif
 
-include $(SUBMAKEFILE)
+	include $(SUBMAKEFILE)

@@ -4,6 +4,7 @@ extern "C" {
 
 #include <stdio.h>
 
+void type();
 
 #ifdef __cplusplus
 }
