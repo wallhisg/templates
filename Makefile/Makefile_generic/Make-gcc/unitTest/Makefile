@@ -1,3 +1,4 @@
+# module
 MODULES		:= 1
 # enable submodules
 SUBMODULES 	:= 1

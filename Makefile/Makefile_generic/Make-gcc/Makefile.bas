@@ -34,7 +34,6 @@ else ifeq (1, $(SUBMODULES))
 	PRJ_DEP_CPP	:= $(sort $(PRJ_DEP_CPP))
 
 	SUBMAKEFILE	= $(foreach sdir, $(LOCAL_MAKEFILE), $(addprefix $(sdir), Makefile)) 
-
 endif
 
-	include $(SUBMAKEFILE)
+include $(SUBMAKEFILE)

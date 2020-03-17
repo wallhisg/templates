@@ -3,19 +3,19 @@ SUBMODULES 	= 1
 ifeq (1, $(SUBMODULES))
 
 #----------------------------------------------------------------------------------
-PRJ_TEST_BASE	:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-PRJ_TEST_MDL	:= $(sort $(dir $(wildcard $(PRJ_TEST_BASE)*/)))
-LOCAL_MAKEFILE	:= $(filter-out $(PRJ_TEST_BASE), $(PRJ_TEST_MDL))
+PRJ_TEST_BASE		:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+PRJ_TEST_MDL		:= $(sort $(dir $(wildcard $(PRJ_TEST_BASE)*/)))
+LOCAL_MAKEFILE		:= $(filter-out $(PRJ_TEST_BASE), $(PRJ_TEST_MDL))
 
 #----------------------------------------------------------------------------------
 # c source
-PRJ_TEST_SRC_C	:= $(wildcard $(PRJ_TEST_BASE)*.c)
+PRJ_TEST_SRC_C		:= $(wildcard $(PRJ_TEST_BASE)*.c)
 
 TEST_OBJ_SAM_01_C	:= $(patsubst %.c, %.o, $(PRJ_TEST_SRC_C))
 TEST_OBJ_SAM_01_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(TEST_OBJ_SAM_01_C))
 
-PRJ_TEST_DEP_C	:= $(patsubst %.c, %.deps, $(PRJ_TEST_SRC_C))	
-PRJ_TEST_DEP_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_TEST_DEP_C))
+PRJ_TEST_DEP_C		:= $(patsubst %.c, %.deps, $(PRJ_TEST_SRC_C))	
+PRJ_TEST_DEP_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_TEST_DEP_C))
 #----------------------------------------------------------------------------------
 # cpp source
 PRJ_TEST_SRC_CPP	:= $(wildcard $(PRJ_TEST_BASE)*.cpp)
