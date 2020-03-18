@@ -1,6 +1,5 @@
 # templates
 
 git add .
-git commit -m "first commit"
-git remote add origin git@github.com:wallhisg/esp8266.git
+git commit -m "add *.cpp and select linker"
 git push -u origin master
