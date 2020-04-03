@@ -1,7 +1,8 @@
 # module
-MODULE 		= 0
+MODULES		:= 0
+
 # enable submodules
-SUBMODULES 	= 1
+SUBMODULES 	:= 1
 ifeq (1, $(SUBMODULES))
 
 #----------------------------------------------------------------------------------

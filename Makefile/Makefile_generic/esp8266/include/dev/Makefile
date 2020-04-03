@@ -1,5 +1,3 @@
-# module
-MODULE 		= 0
 # enable submodules
 SUBMODULES 	= 1
 ifeq (1, $(SUBMODULES))

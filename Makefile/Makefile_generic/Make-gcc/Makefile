@@ -1,39 +1,48 @@
-export ROOT_BASE	?= $(abspath $(dir $(abspath $(dir $$PWD))))
-export PRJ_BASE		?= $(abspath $(dir $$PWD))
-export PRJ_PATH		?= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+export ROOT_BASE		?=	$(abspath $(dir $(abspath $(dir $$PWD))))
+export PRJ_BASE			?=	$(abspath $(dir $$PWD))
+export PRJ_PATH			?=	$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
-export PRJ_SRC_C	:=
-export PRJ_OBJ_C	:=
-export PRJ_DEP_C	:=
+export PRJ_SRC_C		:=
+export PRJ_OBJ_C		:=
+export PRJ_DEP_C		:=
 
-export PRJ_SRC_CPP	:=
-export PRJ_OBJ_CPP	:=
-export PRJ_DEP_CPP	:=
+export PRJ_SRC_CPP		:=
+export PRJ_OBJ_CPP		:=
+export PRJ_DEP_CPP		:=
 
-export PRJ_LIB		:=
-export EXTRA_LIB	:=
+export PRJ_OBJ			:=
+export PRJ_DEPS			:=
 
-export MDL_PATH		:=
-export EXTRA_MDL_PATH	:= 
+export PRJ_LIB			:=
+export EXTRA_LIB		:=
 
-export TEST_PATH	:=
+export MDL_PATH			:=
+export EXTRA_MDL_PATH	:=
 
-export MDL_INC		:=
+export TEST_PATH		:=
+
+export MDL_INC			:=
 export EXTRA_MLD_INC	:=
 
-export TARGET		:=
-export PROGRAMS		:=
+export TARGET			:=
+export PROGRAMS			:=
 
-export BUILD		= build
-export BUILD_BASE	= $(PRJ_BASE)/$(BUILD)
-export BUILD_PATH	= $(PRJ_BASE)/$(BUILD)/
-export BUILD_DIR	= $(subst $(PRJ_PATH),$(BUILD_PATH), $(MDL_PATH))
+export BUILD			=	build
+export BUILD_BASE		=	$(PRJ_BASE)/$(BUILD)
+export BUILD_PATH		=	$(PRJ_BASE)/$(BUILD)/
+export BUILD_DIR		=	$(subst $(PRJ_PATH),$(BUILD_PATH), $(MDL_PATH))
 export BUILD_TEST_DIR	=
+
+# define BFLAG
+export	BF_RESERVED		:=	0
+export	BF_BUILD		:=	1
+export	BF_NOT_BUILD	:=	2
+export	BF_NOT_USE		:=	3
 
 include $(PRJ_BASE)/Makefile.cfg
 include $(PRJ_BASE)/Makefile.inc
-include $(PRJ_BASE)/Makefile.env
 include $(PRJ_BASE)/Makefile.bas
+include $(PRJ_BASE)/Makefile.env
 
 .PHONY: all build clean checkdirs test
 
@@ -47,4 +56,5 @@ MV	:= mf -f
 #======================================================================
 
 test:
-	@echo	01. $(TEST_PATH)
+	@echo	01. $(BUILD_MDL_DIR)
+

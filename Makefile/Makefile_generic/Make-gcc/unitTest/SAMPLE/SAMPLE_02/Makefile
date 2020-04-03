@@ -1,12 +1,20 @@
-# enable submodules
-SUBMODULES 	= 1
-ifeq (1, $(SUBMODULES))
+# build flag
+# define BFLAG
+# BF_RESERVED	:=	0	BF_BUILD	:=	1
+# BF_NOT_BUILD	:=	2	BF_NOT_USE	:=	3
+BFLAG	:= $(BF_BUILD)
+#	BF_RESERVED		reserved
+#	BF_BUILD		build or re-build and add to PRJ_OBJ_C 	/ 	auto
+#	BF_NOT_BUILD	built not re-build and add to PRJ_OBJ_C /	manual
+#	BF_NOT_USE		not using								/	manual
 
 #----------------------------------------------------------------------------------
 PRJ_TEST_BASE	:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 PRJ_TEST_MDL	:= $(sort $(dir $(wildcard $(PRJ_TEST_BASE)*/)))
-LOCAL_MAKEFILE	:= $(filter-out $(PRJ_TEST_BASE), $(PRJ_TEST_MDL))
+PRJ_LOCAL_SUB_MDL	:= $(filter-out $(PRJ_TEST_BASE), $(PRJ_TEST_MDL))
 
+LOCAL_DIR_NAME		:=	$(shell basename $(PRJ_LOCAL_BASE))
+LOCAL_BUILD_DIR		:=	$(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_BASE))
 #----------------------------------------------------------------------------------
 # c source
 PRJ_TEST_SRC_C	:= $(wildcard $(PRJ_TEST_BASE)*.c)
@@ -50,5 +58,3 @@ $(PROGRAM): $(PRJ_TEST_DEP_C) $(PRJ_TEST_DEP_CPP) $(TEST_OBJ_SAM_02_C) $(TEST_OB
 
 #----------------------------------------------------------------------------------
 include $(PRJ_BASE)/Makefile.bas
-
-endif

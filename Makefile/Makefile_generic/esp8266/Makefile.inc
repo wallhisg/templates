@@ -1,20 +1,17 @@
 
-PRJ_UNIT_TEST	?= $(PRJ_BASE)/unitTest
+PRJ_UNIT_TEST		?= $(PRJ_BASE)/unitTest
 PRJ_INCLUDE		?= $(PRJ_BASE)/include
-PRJ_PACKAGE		?= $(PRJ_BASE)/package
 PRJ_CORE		?= $(PRJ_BASE)/core
 
 __DIRECTORY_VARIABLES := 	\
-	PRJ_UNIT_TEST			\
- 	PRJ_INCLUDE				\
- 	PRJ_PACKAGE				\
+	PRJ_UNIT_TEST		\
+	PRJ_INCLUDE 		\
 	PRJ_CORE
 
 
 override PRJ_BASE		:= $(abspath $(PRJ_BASE))
 override PRJ_UNIT_TEST		:= $(abspath $(PRJ_UNIT_TEST))
 override PRJ_INCLUDE		:= $(abspath $(PRJ_INCLUDE))
-override PRJ_PACKAGE		:= $(abspath $(PRJ_PACKAGE))
 override PRJ_CORE		:= $(abspath $(PRJ_CORE))
 
 # Ensure that all directories are set and don't contain spaces.
@@ -28,6 +25,6 @@ endif
 MAKEOVERRIDES 	+= $(sort $(foreach v,$(__DIRECTORY_VARIABLES),$($(v))))
 
 # include all make file
-PRJ_INCLUDE_MAKEFILE 	+=	$(foreach sdir, $(MAKEOVERRIDES), $(addprefix $(sdir)/, Makefile))
-SUBDIR					+=	$(foreach sdir, $(MAKEOVERRIDES), $(sdir))
+PRJ_INCLUDE_MAKEFILE += $(foreach sdir, $(MAKEOVERRIDES), $(addprefix $(sdir)/, Makefile))
+
 include $(PRJ_INCLUDE_MAKEFILE)
