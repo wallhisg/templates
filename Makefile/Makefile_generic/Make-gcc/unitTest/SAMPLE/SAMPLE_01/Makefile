@@ -1,59 +1,48 @@
-# build flag
-# define BFLAG
-# BF_RESERVED	:=	0	BF_BUILD	:=	1
-# BF_NOT_BUILD	:=	2	BF_NOT_USE	:=	3
-BFLAG	:= $(BF_BUILD)
-#	BF_RESERVED		reserved
-#	BF_BUILD		build or re-build and add to PRJ_OBJ_C 	/ 	auto
-#	BF_NOT_BUILD	built not re-build and add to PRJ_OBJ_C /	manual
-#	BF_NOT_USE		not using								/	manual
-
+# Build Flag
+# BF_RESERVED	:=	0	BF_NOT_USE		:=	1
+# BF_NOT_INC	:=	2	BF_NOT_BUILD	:=	3
+# BF_BUILD		:=	4	BF_TEST			:=	5
+BFLAG	:= $(BF_TEST)
 #----------------------------------------------------------------------------------
-PRJ_TEST_BASE		:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-PRJ_TEST_MDL		:= $(sort $(dir $(wildcard $(PRJ_TEST_BASE)*/)))
-PRJ_LOCAL_SUB_MDL		:= $(filter-out $(PRJ_TEST_BASE), $(PRJ_TEST_MDL))
-
-LOCAL_DIR_NAME		:=	$(shell basename $(PRJ_LOCAL_BASE))
+PRJ_LOCAL_BASE		:= $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+PRJ_LOCAL_MDL		:= $(sort $(dir $(wildcard $(PRJ_LOCAL_BASE)*/)))
+PRJ_LOCAL_SUB_MDL	:= $(filter-out $(PRJ_LOCAL_BASE), $(PRJ_LOCAL_MDL))
 LOCAL_BUILD_DIR		:=	$(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_LOCAL_BASE))
 #----------------------------------------------------------------------------------
-# c source
-PRJ_TEST_SRC_C		:= $(wildcard $(PRJ_TEST_BASE)*.c)
-
-TEST_OBJ_SAM_01_C	:= $(patsubst %.c, %.o, $(PRJ_TEST_SRC_C))
-TEST_OBJ_SAM_01_C	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(TEST_OBJ_SAM_01_C))
-
-PRJ_TEST_DEP_C		:= $(patsubst %.c, %.deps, $(PRJ_TEST_SRC_C))	
-PRJ_TEST_DEP_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_TEST_DEP_C))
-#----------------------------------------------------------------------------------
-# cpp source
-PRJ_TEST_SRC_CPP	:= $(wildcard $(PRJ_TEST_BASE)*.cpp)
-
-TEST_OBJ_SAM_01_CPP	:= $(patsubst %.cpp, %.o, $(PRJ_TEST_SRC_CPP))
-TEST_OBJ_SAM_01_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(TEST_OBJ_SAM_01_CPP))
-
-PRJ_TEST_DEP_CPP	:= $(patsubst %.cpp, %.deps, $(PRJ_TEST_SRC_CPP))	
-PRJ_TEST_DEP_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PRJ_TEST_DEP_CPP))
-#----------------------------------------------------------------------------------
 # header
-PRJ_TEST_INC	:= $(wildcard $(PRJ_TEST_BASE)*.h)
+PRJ_LOCAL_INC		:= $(wildcard $(PRJ_LOCAL_BASE)*.h)
+#----------------------------------------------------------------------------------
+# source
+PRJ_LOCAL_SRC_C		:= $(wildcard $(PRJ_LOCAL_BASE)*.c)
+PRJ_LOCAL_SRC_CPP	:= $(wildcard $(PRJ_LOCAL_BASE)*.cpp)
+#----------------------------------------------------------------------------------
+# dep
+PRJ_LOCAL_DEP_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(patsubst %.c, %.deps, $(PRJ_LOCAL_SRC_C)))
+PRJ_LOCAL_DEP_CPP	:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(patsubst %.cpp, %.deps, $(PRJ_LOCAL_SRC_CPP)))
 
+PRJ_LOCAL_DEP 		+=	$(PRJ_LOCAL_DEP_C)
+PRJ_LOCAL_DEP 		+=	$(PRJ_LOCAL_DEP_CPP)
+#----------------------------------------------------------------------------------
+# object
+SAM_01_OBJ_C		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(patsubst %.c, %.o, $(PRJ_LOCAL_SRC_C)))
+SAM_01_OBJ_CPP		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(patsubst %.cpp, %.o, $(PRJ_LOCAL_SRC_CPP)))
 
+SAM_01_OBJ			+=	$(SAM_01_OBJ_C)
+SAM_01_OBJ			+=	$(SAM_01_OBJ_CPP)
+#----------------------------------------------------------------------------------
 # dependencies
-$(PRJ_TEST_DEP_C): $(PRJ_TEST_SRC_C) $(PRJ_TEST_INC)
-	@$(CC) -MM $< > $@
-	@$(CC) $< -MM -MT $@ >> $@
+$(PRJ_LOCAL_DEP_C): $(PRJ_LOCAL_SRC_C) $(PRJ_LOCAL_INC)
+$(PRJ_LOCAL_DEP_CPP): $(PRJ_LOCAL_SRC_CPP) $(PRJ_LOCAL_INC)
 
-$(PRJ_TEST_DEP_CPP): $(PRJ_TEST_SRC_CPP) $(PRJ_TEST_INC)
-	@$(CXX) -MM $< > $@
-	@$(CXX) $< -MM -MT $@ >> $@
-
-TARGET		:= $(shell basename $(PRJ_TEST_BASE))
-PROGRAM		:= $(addprefix $(PRJ_TEST_BASE), $(TARGET))
+$(SAM_01_OBJ_C): $(PRJ_LOCAL_SRC_C) $(PRJ_LOCAL_DEP_C)
+$(SAM_01_OBJ_CPP): $(PRJ_LOCAL_SRC_CPP) $(PRJ_LOCAL_DEP_CPP)
+#----------------------------------------------------------------------------------
+# target
+TARGET		:= $(shell basename $(PRJ_LOCAL_BASE))
+PROGRAM		:= $(addprefix $(PRJ_LOCAL_BASE), $(TARGET))
 PROGRAM		:= $(subst $(PRJ_PATH), $(BUILD_PATH), $(PROGRAM))
-PROGRAMS	+= $(PROGRAM)
 
-$(PROGRAM): $(PRJ_TEST_DEP_C) $(PRJ_TEST_DEP_CPP) $(TEST_OBJ_SAM_01_C) $(TEST_OBJ_SAM_01_CPP)
-	$(CCX) $(TEST_OBJ_SAM_01_C) $(TEST_OBJ_SAM_01_CPP) $(PRJ_OBJ) -o $@ 
-
+$(PROGRAM): $(SAM_01_OBJ)
+	$(CCX) $(PRJ_OBJ) $< -o $@ 
 #----------------------------------------------------------------------------------
 include $(PRJ_BASE)/Makefile.bas

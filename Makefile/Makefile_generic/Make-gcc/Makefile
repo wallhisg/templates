@@ -33,11 +33,17 @@ export BUILD_PATH		=	$(PRJ_BASE)/$(BUILD)/
 export BUILD_DIR		=	$(subst $(PRJ_PATH),$(BUILD_PATH), $(MDL_PATH))
 export BUILD_TEST_DIR	=
 
-# define BFLAG
+# define folder flag FFLAG
+export	FF_NOT_INC		:=	0
+export	FF_INC			:=	1
+
+# define build flag BFLAG
 export	BF_RESERVED		:=	0
-export	BF_BUILD		:=	1
-export	BF_NOT_BUILD	:=	2
-export	BF_NOT_USE		:=	3
+export	BF_NOT_USE		:=	1
+export	BF_NOT_INC		:=	2
+export	BF_NOT_BUILD	:=	3
+export	BF_BUILD		:=	4
+export	BF_TEST			:=	5
 
 include $(PRJ_BASE)/Makefile.cfg
 include $(PRJ_BASE)/Makefile.inc
@@ -56,5 +62,7 @@ MV	:= mf -f
 #======================================================================
 
 test:
-	@echo	01. $(BUILD_MDL_DIR)
+	@echo	01. $(PRJ_DEP)
+	@echo	02. $(MLD_NOT_INC)
+	@echo	03. $(MDL_PATH)
 

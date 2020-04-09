@@ -5,10 +5,10 @@ PRJ_PACKAGE		?= $(PRJ_BASE)/package
 PRJ_CORE		?= $(PRJ_BASE)/core
 
 __DIRECTORY_VARIABLES := 	\
-	PRJ_UNIT_TEST			\
+	PRJ_CORE				\
  	PRJ_INCLUDE				\
  	PRJ_PACKAGE				\
-	PRJ_CORE
+	PRJ_UNIT_TEST			
 
 
 override PRJ_BASE		:= $(abspath $(PRJ_BASE))
