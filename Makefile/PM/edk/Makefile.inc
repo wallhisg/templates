@@ -1,0 +1,32 @@
+
+EDK_UNIT_TEST	?= $(EDK_BASE)/unitTest
+EDK_INCLUDE		?= $(EDK_BASE)/include
+EDK_PACKAGE		?= $(EDK_BASE)/package
+EDK_CORE		?= $(EDK_BASE)/core
+
+__DIRECTORY_VARIABLES := 	\
+	EDK_CORE				\
+ 	EDK_INCLUDE				\
+ 	EDK_PACKAGE
+
+
+override EDK_BASE		:= $(abspath $(EDK_BASE))
+override EDK_UNIT_TEST		:= $(abspath $(EDK_UNIT_TEST))
+override EDK_INCLUDE		:= $(abspath $(EDK_INCLUDE))
+override EDK_PACKAGE		:= $(abspath $(EDK_PACKAGE))
+override EDK_CORE		:= $(abspath $(EDK_CORE))
+
+# Ensure that all directories are set and don't contain spaces.
+ifneq (, $(filter-out 1, $(foreach v,$(__DIRECTORY_VARIABLES),$(words $($(v))))))
+  $(info Aborting compilation for your safety.)
+  $(info Related variables = $(__DIRECTORY_VARIABLES))
+  $(error Make sure no path override is empty or contains spaces!)
+endif
+
+# Use absolute paths in recusive "make" even if overriden on command line.
+MAKEOVERRIDES 	+= $(sort $(foreach v,$(__DIRECTORY_VARIABLES),$($(v))))
+
+# include all make file
+EDK_INCLUDE_MAKEFILE 	+=	$(foreach sdir, $(MAKEOVERRIDES), $(addprefix $(sdir)/, Makefile))
+SUBDIR					+=	$(foreach sdir, $(MAKEOVERRIDES), $(sdir))
+include $(EDK_INCLUDE_MAKEFILE)

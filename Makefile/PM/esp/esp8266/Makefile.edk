@@ -1,0 +1,30 @@
+
+# Build Flag
+# BF_RESERVED	:=	0	BF_NOT_USE		:=	1
+# BF_NOT_INC	:=	2	BF_NOT_BUILD	:=	3
+# BF_BUILD		:=	4	BF_TEST			:=	5
+EDK_BFLAG	:= $(BF_BUILD)
+
+EDK_BASE	:= $(ROOT_BASE)/edk
+# EDK_PATH	:= $(ROOT_BASE)/edk/
+include $(EDK_BASE)/Makefile.edk
+
+# EDK_PATH	:= $(EDK_BASE)
+# export EDK_OBJS			:=
+# export EDK_DEPS			:=
+# export EDK_MDLS			:=
+
+export EDK_BUILD		:= build/edk
+export EDK_BUILD_BASE	:= $(PRJ_BASE)/$(EDK_BUILD)
+export EDK_BUILD_PATH	:= $(PRJ_BASE)/$(EDK_BUILD)/
+
+export EDK_DIR 			:= $(dir $(EDK_OBJ))
+export EDK_BUILD_DIR 	:= $(subst $(EDK_BASE), $(EDK_BUILD_BASE), $(EDK_DIR))
+
+PRJ_ESP_BUILD_DIR		+= $(EDK_BUILD_DIR)
+EDK_OBJ 				:= $(subst $(EDK_BASE), $(EDK_BUILD_BASE), $(EDK_OBJ))
+EDK_DEP 				:= $(subst $(EDK_BASE), $(EDK_BUILD_BASE), $(EDK_DEP))
+EDK_LIB 				:= edk_lib
+EDK_LIB 				:= $(addsuffix .a, $(EDK_LIB))
+EDK_LIB 				:= $(addprefix $(EDK_BUILD_BASE)/, $(EDK_LIB))
+# EDK_BUILD_DIR	:= 
